@@ -4,7 +4,7 @@
 // should sit.
 import qrcodegen from "./vendor/qrcodegen/qrcodegen.js";
 
-const api = window.archium;
+const api = window.hillium;
 const $ = (id) => document.getElementById(id);
 const body = document.body;
 let state = null;
@@ -114,7 +114,7 @@ function faviconEl(tab) {
     img.alt = "";
     img.onerror = () => (el.innerHTML = icon("globe"));
     el.append(img);
-  } else el.innerHTML = icon(tab.url.startsWith("archium:") ? "file" : "globe");
+  } else el.innerHTML = icon(tab.url.startsWith("hillium:") ? "file" : "globe");
   return el;
 }
 
@@ -124,7 +124,7 @@ function tabElement(tab, kind) {
   el.role = "tab";
   el.draggable = true;
   el.dataset.id = tab.id;
-  el.title = `${tab.title}${tab.url.startsWith("archium:") ? "" : `\n${tab.url}`}`;
+  el.title = `${tab.title}${tab.url.startsWith("hillium:") ? "" : `\n${tab.url}`}`;
   el.setAttribute("aria-selected", String(tab.id === state.activeId));
   el.classList.toggle("private", tab.private);
   el.classList.toggle("pinned", tab.pinned);
@@ -166,12 +166,12 @@ function tabElement(tab, kind) {
     e.preventDefault();
     api.send("tab-menu", tab.id);
   });
-  el.addEventListener("dragstart", (e) => e.dataTransfer.setData("text/archium-tab", String(tab.id)));
+  el.addEventListener("dragstart", (e) => e.dataTransfer.setData("text/hillium-tab", String(tab.id)));
   el.addEventListener("dragover", (e) => e.preventDefault());
   el.addEventListener("drop", (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const id = Number(e.dataTransfer.getData("text/archium-tab"));
+    const id = Number(e.dataTransfer.getData("text/hillium-tab"));
     const dragged = state.tabs.find((t) => t.id === id);
     if (!dragged || id === tab.id) return;
     if (dragged.pinned !== tab.pinned) api.send("pin", { id, on: tab.pinned });
@@ -185,7 +185,7 @@ for (const [id, on] of [["essentials", true], ["sidetabs", false]]) {
   $(id).addEventListener("dragover", (e) => e.preventDefault());
   $(id).addEventListener("drop", (e) => {
     e.preventDefault();
-    const tabId = Number(e.dataTransfer.getData("text/archium-tab"));
+    const tabId = Number(e.dataTransfer.getData("text/hillium-tab"));
     if (tabId) api.send("pin", { id: tabId, on });
   });
 }
@@ -227,9 +227,9 @@ function render(next) {
   const address = $("address");
   if (document.activeElement !== address) address.value = displayUrl(state.url);
   const secure = state.url.startsWith("https:");
-  const own = state.url.startsWith("archium:") || state.url.startsWith("view-source:");
+  const own = state.url.startsWith("hillium:") || state.url.startsWith("view-source:");
   $("site").querySelector("use").setAttribute("href", !state.url ? "#i-search" : own ? "#i-info" : secure ? "#i-lock" : "#i-warn");
-  $("site").title = !state.url ? "" : own ? "Archium page" : secure ? `Connection to ${hostOf(state.url)} is secure` : `Connection to ${hostOf(state.url)} is not secure`;
+  $("site").title = !state.url ? "" : own ? "Hillium page" : secure ? `Connection to ${hostOf(state.url)} is secure` : `Connection to ${hostOf(state.url)} is not secure`;
   $("site").classList.toggle("insecure", Boolean(state.url) && !secure && !own);
   $("star").classList.toggle("on", state.bookmarked);
   $("star").disabled = !/^https?:/.test(state.url);
@@ -259,8 +259,8 @@ function render(next) {
   banner.hidden = !state.status;
   banner.textContent = state.status;
 
-  $("caption-title").textContent = active ? `${active.title || "New Tab"} - Archium` : "Archium";
-  document.title = active?.title || "Archium";
+  $("caption-title").textContent = active ? `${active.title || "New Tab"} - Hillium` : "Hillium";
+  document.title = active?.title || "Hillium";
   $("status-text").textContent = state.hoverUrl || (loading ? `Opening page ${hostOf(state.url)}…` : "Done");
   $("status-blocked").textContent = s.adblock ? `${state.blocked} blocked` : "Blocking off";
   $("status-zone").textContent = s.mode === "tor" ? "Tor" : s.mode === "proxy" ? "Proxy" : active?.private ? "Private" : "Internet";
@@ -450,7 +450,8 @@ $("address").addEventListener("focus", () => {
   typed = "";
   if ($("address").value === displayUrl(state?.url ?? "")) $("address").value = state?.url ?? "";
   floatAddress(true);
-  requestAnimationFrame(() => $("address").select());
+  // Don't select once typing has started, or the next key replaces the first letter.
+  requestAnimationFrame(() => typed || $("address").select());
 });
 $("address").addEventListener("blur", () => {
   closeSuggest();
@@ -731,7 +732,7 @@ const PERMISSIONS = [
 async function openSiteInfo(source) {
   const info = await api.invoke("site-info");
   const host = hostOf(info.url);
-  $("siteinfo-host").textContent = info.origin ? host : info.url.startsWith("archium:") ? "Archium page" : host || "New Tab";
+  $("siteinfo-host").textContent = info.origin ? host : info.url.startsWith("hillium:") ? "Hillium page" : host || "New Tab";
   $("siteinfo-conn").textContent = !info.origin ? "" : info.secure ? "Connection is secure" : "Connection is not secure. Don't enter passwords or card details here.";
   $("siteinfo-conn").classList.toggle("insecure", Boolean(info.origin) && !info.secure);
   const box = $("siteinfo-body");
