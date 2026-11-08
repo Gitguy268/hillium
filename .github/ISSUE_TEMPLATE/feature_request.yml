@@ -1,5 +1,5 @@
 name: Feature request
-description: An idea for Archium
+description: An idea for Hillium
 title: ''
 labels:
   - enhancement
@@ -16,4 +16,4 @@ body:
     id: idea
     attributes:
       label: Your idea
-      description: How could Archium help? Say if it needs a network request, since the new tab page must stay offline.
+      description: How could Hillium help? Say if it needs a network request, since the new tab page must stay offline.

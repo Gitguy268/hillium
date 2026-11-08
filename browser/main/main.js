@@ -1,9 +1,9 @@
-// Archium Browser: app lifecycle, the menu (every keyboard shortcut lives here), links from
-// other apps, and the IPC bridge from Archium's own pages.
+// Hillium Browser: app lifecycle, the menu (every keyboard shortcut lives here), links from
+// other apps, and the IPC bridge from Hillium's own pages.
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { app, BaseWindow, Menu, dialog, ipcMain, nativeTheme } from "electron";
-import "./protocol.js"; // registers the archium:// scheme before ready
+import "./protocol.js"; // registers the hillium:// scheme before ready
 import { registerProtocol, PAGES } from "./protocol.js";
 import { setupSessions, applyNetwork, sessions, blockedCount } from "./sessions.js";
 import { startAdblock, getBlocker } from "./adblock.js";
@@ -15,9 +15,9 @@ import { toUrl } from "./url.js";
 import { createPagesApi } from "./pages.js";
 import { setDownloadsListener, downloadAction } from "./downloads.js";
 
-app.setName("Archium");
-// Its own folder: "Archium" already holds the SearXNG install from searxng/install.sh.
-app.setPath("userData", process.env.ARCHIUM_USER_DATA || join(app.getPath("appData"), "Archium Browser"));
+app.setName("Hillium");
+// Its own folder: "Hillium" already holds the SearXNG install from searxng/install.sh.
+app.setPath("userData", process.env.HILLIUM_USER_DATA || join(app.getPath("appData"), "Hillium Browser"));
 // Hardening that costs nothing: no remote debugging, no background sync of anything.
 app.commandLine.appendSwitch("disable-features", "MediaRouter,OptimizationHints,InterestFeedContentSuggestions");
 
@@ -77,7 +77,7 @@ function refreshLook() {
   rebuildMenu();
 }
 
-// Links from other apps (Archium as the default browser), Finder and the command line.
+// Links from other apps (Hillium as the default browser), Finder and the command line.
 function openExternal(url) {
   if (!/^(https?:|file:)/i.test(url)) return;
   if (!ready) return void pendingUrls.push(url);
@@ -141,7 +141,7 @@ function run(command, arg, shell = focused()) {
     case "stop":
       return wc?.stop();
     case "home":
-      return wc?.loadURL("archium://newtab/");
+      return wc?.loadURL("hillium://newtab/");
     case "bookmark":
       if (shell?.active && /^https?:/.test(shell.active.url)) toggleBookmark({ url: shell.active.url, title: shell.active.title });
       return broadcast();
@@ -193,7 +193,7 @@ function rebuildMenu() {
   const check = (label, accelerator, command, checked) => ({ ...item(label, accelerator, command), type: "checkbox", checked });
   const template = [
     {
-      label: "Archium",
+      label: "Hillium",
       submenu: [
         { role: "about" },
         { type: "separator" },
@@ -348,11 +348,11 @@ async function remoteSuggestions(text, isPrivate) {
   }
 }
 
-// --- IPC from Archium's pages -------------------------------------------------
+// --- IPC from Hillium's pages -------------------------------------------------
 
-const isOwnPage = (frame) => frame?.url.startsWith("archium://app/");
+const isOwnPage = (frame) => frame?.url.startsWith("hillium://app/");
 
-ipcMain.on("archium", (e, command, arg) => {
+ipcMain.on("hillium", (e, command, arg) => {
   if (!isOwnPage(e.senderFrame)) return;
   const shell = [...shells].find((s) => s.owns(e.sender));
   if (!shell) return;
@@ -389,7 +389,7 @@ ipcMain.on("archium", (e, command, arg) => {
   }
 });
 
-ipcMain.handle("archium", async (e, command, arg) => {
+ipcMain.handle("hillium", async (e, command, arg) => {
   if (!isOwnPage(e.senderFrame)) throw new Error("Not allowed");
   const shell = [...shells].find((s) => s.owns(e.sender));
   switch (command) {
@@ -480,7 +480,7 @@ app.on("second-instance", (_, argv) => {
 app.whenReady().then(async () => {
   if (process.platform === "darwin" && !app.isPackaged) app.dock?.setIcon(icon());
   nativeTheme.themeSource = "system";
-  // Light/dark or the system accent changed: every window and Archium page follows.
+  // Light/dark or the system accent changed: every window and Hillium page follows.
   nativeTheme.on("updated", broadcast);
   await setupSessions((kind, id) => {
     if (kind === "blocked") {
@@ -490,9 +490,9 @@ app.whenReady().then(async () => {
   setDownloadsListener(broadcast);
 
   const api = createPagesApi({ applySettings, broadcast, sessions });
-  if (globalThis.__archium) globalThis.__archium.pages = api;
+  if (globalThis.__hillium) globalThis.__hillium.pages = api;
   registerProtocol(sessions.ui, ["app"], api);
-  registerProtocol(sessions.ai, ["app", "models"], api); // "models": archium://app/models/
+  registerProtocol(sessions.ai, ["app", "models"], api); // "models": hillium://app/models/
   registerProtocol(sessions.tabs, PAGES, api);
   registerProtocol(sessions.private, PAGES, api);
 
@@ -515,13 +515,13 @@ app.on("before-quit", () => {
 });
 
 app.on("window-all-closed", () => {
-  // Like other Mac browsers, Archium stays running with no windows.
+  // Like other Mac browsers, Hillium stays running with no windows.
   if (process.platform !== "darwin") app.quit();
 });
 
 // Test hook: Playwright drives commands without synthesising menu shortcuts.
-if (process.env.ARCHIUM_TEST) {
-  globalThis.__archium = {
+if (process.env.HILLIUM_TEST) {
+  globalThis.__hillium = {
     run,
     shells,
     getSettings,

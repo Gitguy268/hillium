@@ -1,4 +1,4 @@
-// archium://bookmarks/: every bookmark, grouped by folder (imports keep theirs).
+// hillium://bookmarks/: every bookmark, grouped by folder (imports keep theirs).
 import { api, applyLook, hostOf, siteIcon } from "/shared/page-api.js";
 import { drawNav } from "/pages/nav.js";
 
@@ -9,7 +9,7 @@ search.type = "search";
 search.placeholder = "Search bookmarks";
 search.setAttribute("aria-label", "Search bookmarks");
 const importLink = document.createElement("a");
-importLink.href = "archium://settings/#import";
+importLink.href = "hillium://settings/#import";
 importLink.textContent = "Import from another browser";
 $("toolbar").append(search, importLink);
 

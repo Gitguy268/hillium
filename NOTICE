@@ -1,10 +1,10 @@
-Archium
+Hillium
 Copyright (c) 2026 Lucas Van De Weerd. GPL-3.0, see LICENSE.
 
-Archium's own code (extension/, browser/, searxng/, services/run-local.sh,
-tests/, branding/, site/) and docs are licensed under the GPL-3.0. Archium runs
+Hillium's own code (extension/, browser/, searxng/, services/run-local.sh,
+tests/, branding/, site/) and docs are licensed under the GPL-3.0. Hillium runs
 on top of the projects below. Files copied from other projects are listed under
-VENDORED and keep their own licences. Archium is not affiliated with any of them, nor with Google or the
+VENDORED and keep their own licences. Hillium is not affiliated with any of them, nor with Google or the
 Tor Project.
 
 RUNS ON TOP OF
@@ -12,8 +12,8 @@ RUNS ON TOP OF
 Helium — GPL-3.0 (Helium's own patches) and BSD-3-Clause (inherited code)
   Copyright (c) The Helium Authors (imputnet)
   https://github.com/imputnet/helium
-  The browser Archium is built for. Its uBlock Origin component, fingerprint
-  noise and Secure DNS presets provide several Archium features.
+  The browser Hillium is built for. Its uBlock Origin component, fingerprint
+  noise and Secure DNS presets provide several Hillium features.
 
 ungoogled-chromium — BSD-3-Clause
   Copyright (c) The ungoogled-chromium Authors
@@ -26,9 +26,9 @@ Chromium — BSD-3-Clause and others
 
 Electron — MIT — Copyright (c) Electron contributors, GitHub Inc.
   https://github.com/electron/electron
-  The engine of Archium Browser (browser/). Installed by npm.
+  The engine of Hillium Browser (browser/). Installed by npm.
 
-NPM DEPENDENCIES OF ARCHIUM BROWSER (installed by npm, not stored here)
+NPM DEPENDENCIES OF HILLIUM BROWSER (installed by npm, not stored here)
 -----------------------------------------------------------------------
 @ghostery/adblocker-electron and its @ghostery packages — MPL-2.0
   Copyright (c) 2017-present Ghostery GmbH
@@ -56,7 +56,7 @@ QR Code generator — MIT — Copyright (c) Project Nayuki
   https://github.com/nayuki/QR-Code-generator
   "Share as QR code".
 
-DOWNLOADED BY ARCHIUM BROWSER (not stored in this repository)
+DOWNLOADED BY HILLIUM BROWSER (not stored in this repository)
 --------------------------------------------------------------
 MiniCPM-V 4.7 1B (GGUF) — Apache-2.0 — Copyright (c) OpenBMB
   https://huggingface.co/openbmb/MiniCPM-V-4.7-1B-gguf
@@ -80,7 +80,7 @@ list text is copied.
 
 IDEAS, NO CODE
 --------------
-Archium Browser takes ideas, not code, from these projects:
+Hillium Browser takes ideas, not code, from these projects:
 - Zen Browser (zen-browser/desktop), MPL-2.0: the sidebar that holds the
   navigation buttons, the address field and the tabs; pinned tabs as a grid
   of icons above the tab list; compact mode, where the sidebar slides in from
@@ -94,7 +94,7 @@ Archium Browser takes ideas, not code, from these projects:
   inline completion in the address bar, asking before closing a window with
   several tabs, and reading bookmarks from places.sqlite.
 - ungoogled-chromium (ungoogled-software/ungoogled-chromium), BSD-3-Clause:
-  its --close-confirmation and --popups-to-tabs switches. Archium Browser
+  its --close-confirmation and --popups-to-tabs switches. Hillium Browser
   does the same in its own code, since Electron's Chromium lacks the patches.
 - Web by Nuanced (nuance-dev/Web), MIT: a local assistant that reads the
   page, the command palette, tabs on top or on the side, and private pages
@@ -117,13 +117,13 @@ ASSETS
 ------
 branding/logo.svg, the icons generated from it and docs/img/*.png are this
 project's own work, GPL-3.0 with the project. The pages use system fonts only.
-Archium Browser's wallpapers are drawn by code (browser/ui/shared/wallpaper.js;
+Hillium Browser's wallpapers are drawn by code (browser/ui/shared/wallpaper.js;
 the cloud sky comes from the author's MIT projects Qrer and Retrofind). No
 Microsoft fonts, icons, sounds or wallpapers are included.
 
 DEVELOPMENT TOOLS (not shipped)
 -------------------------------
-Playwright (Apache-2.0) drives Helium in tests/e2e.mjs and Archium Browser in
-browser/test/e2e.mjs. electron-builder (MIT) packages Archium.app. uv (MIT/Apache-2.0)
+Playwright (Apache-2.0) drives Helium in tests/e2e.mjs and Hillium Browser in
+browser/test/e2e.mjs. electron-builder (MIT) packages Hillium.app. uv (MIT/Apache-2.0)
 creates SearXNG's Python environment. mkcert (BSD-3-Clause) and Docker run
 the optional local services.

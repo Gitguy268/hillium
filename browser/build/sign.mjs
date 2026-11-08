@@ -3,7 +3,7 @@
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
-const app = fileURLToPath(new URL("../dist/mac-arm64/Archium.app", import.meta.url));
+const app = fileURLToPath(new URL("../dist/mac-arm64/Hillium.app", import.meta.url));
 execFileSync("codesign", ["--force", "--deep", "--sign", "-", app], { stdio: "inherit" });
 execFileSync("codesign", ["--verify", "--deep", "--strict", app], { stdio: "inherit" });
 console.log(`Signed ad hoc: ${app}`);

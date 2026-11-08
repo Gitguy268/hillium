@@ -1,29 +1,29 @@
 <div align="center">
 
-<img src="branding/logo.svg" alt="Archium logo" width="112">
+<img src="branding/logo.svg" alt="Hillium logo" width="112">
 
-# Archium
+# Hillium
 
-A privacy layer for the [Helium](https://github.com/imputnet/helium) browser: offline new tab, local search, a Tor switch with a kill switch, and a URL cleaner. Plus **Archium Browser**, a runnable browser with the same protection, three looks, Glance and a local assistant.
+A privacy layer for the [Helium](https://github.com/imputnet/helium) browser: offline new tab, local search, a Tor switch with a kill switch, and a URL cleaner. Plus **Hillium Browser**, a runnable browser with the same protection, three looks, Glance and a local assistant.
 
-[Archium Browser](#archium-browser) · [Install](#install) · [Features](#features) · [Limits](#limits) · [Threat model](docs/threat-model.md) · [Roadmap](docs/roadmap.md) · [Contributing](CONTRIBUTING.md)
+[Hillium Browser](#hillium-browser) · [Install](#install) · [Features](#features) · [Limits](#limits) · [Threat model](docs/threat-model.md) · [Roadmap](docs/roadmap.md) · [Contributing](CONTRIBUTING.md)
 
 [![License: GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue)](LICENSE)
 ![Platform: macOS](https://img.shields.io/badge/platform-macOS-lightgrey)
 ![Based on Helium 0.19](https://img.shields.io/badge/based%20on-Helium%200.19-6b3fa0)
 
-<img src="docs/img/newtab-light.png" alt="The Archium new tab page: a clock, a search box and quick links, with a 'Browsing through Tor' label" width="820">
+<img src="docs/img/newtab-light.png" alt="The Hillium new tab page: a clock, a search box and quick links, with a 'Browsing through Tor' label" width="820">
 
 </div>
 
 > **Status: two ways to run it.**
-> - **Archium Browser** (`browser/`) is a Chromium shell you can run today. It has Archium's protection built in.
+> - **Hillium Browser** (`browser/`) is a Chromium shell you can run today. It has Hillium's protection built in.
 > - **The companion kit** is an extension plus scripts for a stock [Helium](https://helium.computer) release.
 >
-> A real Helium build with Archium compiled in is planned in the [roadmap](docs/roadmap.md).
+> A real Helium build with Hillium compiled in is planned in the [roadmap](docs/roadmap.md).
 
 <!-- live-links -->
-**Live:** [gitguy268.github.io/archium](https://gitguy268.github.io/archium/) · [archium-pied.vercel.app](https://archium-pied.vercel.app)
+**Live:** [gitguy268.github.io/hillium](https://gitguy268.github.io/hillium/) · [hillium.vercel.app](https://hillium.vercel.app)
 <!-- /live-links -->
 
 <!-- run-steps:start -->
@@ -34,11 +34,11 @@ A privacy layer for the [Helium](https://github.com/imputnet/helium) browser: of
 2. **Get the code:**
 
    ```sh
-   git clone https://github.com/Gitguy268/archium.git
-   cd archium
+   git clone https://github.com/Gitguy268/hillium.git
+   cd hillium
    ```
 
-3. **Start Archium Browser:**
+3. **Start Hillium Browser:**
 
    ```sh
    cd browser
@@ -49,15 +49,15 @@ A privacy layer for the [Helium](https://github.com/imputnet/helium) browser: of
 4. **Quit** by closing the window. To use the extension in Helium instead, follow the Install section below.
 <!-- run-steps:end -->
 
-## Archium Browser
+## Hillium Browser
 
 Double-click `browser/start.command` (needs Node.js 20+). The first run installs about 350 MB.
 
 <table>
 <tr>
-<td><img src="docs/img/browser-normal.png" alt="Archium Browser in the Normal look: an article with the assistant panel summarizing it and describing a screenshot" width="270"></td>
-<td><img src="docs/img/browser-win98.png" alt="Archium Browser in the Windows 98 look: navy caption bar, coolbar buttons and a cloud desktop new tab page" width="270"></td>
-<td><img src="docs/img/browser-glass.png" alt="Archium Browser in the Liquid Glass look: glass capsules over an aurora wallpaper" width="270"></td>
+<td><img src="docs/img/browser-normal.png" alt="Hillium Browser in the Normal look: an article with the assistant panel summarizing it and describing a screenshot" width="270"></td>
+<td><img src="docs/img/browser-win98.png" alt="Hillium Browser in the Windows 98 look: navy caption bar, coolbar buttons and a cloud desktop new tab page" width="270"></td>
+<td><img src="docs/img/browser-glass.png" alt="Hillium Browser in the Liquid Glass look: glass capsules over an aurora wallpaper" width="270"></td>
 </tr>
 <tr><td align="center">Normal</td><td align="center">Windows 98</td><td align="center">Liquid Glass</td></tr>
 </table>
@@ -70,7 +70,7 @@ Double-click `browser/start.command` (needs Node.js 20+). The first run installs
 | **Glance** | ⌃⌥Space opens a small browser in the screen corner from any app |
 | **Assistant** | MiniCPM-V 4.7 1B on your Mac. It summarizes the page, answers questions about it and looks at screenshots. Private tabs are never read |
 | **Focus Mode, ⌘K, flexible tabs** | Only the page (⇧⌘B). One palette for tabs, history, bookmarks and commands. Tabs on top, on the side or hidden |
-| **Privacy** | Ghostery ad and tracker blocking, Archium's URL cleaner, Tor or a proxy with a kill switch in every session, a WebRTC block, local SearXNG |
+| **Privacy** | Ghostery ad and tracker blocking, Hillium's URL cleaner, Tor or a proxy with a kill switch in every session, a WebRTC block, local SearXNG |
 
 Glance, the page assistant and Focus Mode are ideas from [Web](https://github.com/nuance-dev/Web) by Nuanced. See [browser/README.md](browser/README.md) for shortcuts, the model and limits.
 
@@ -89,13 +89,13 @@ Glance, the page assistant and Focus Mode are ideas from [Web](https://github.co
 | DNS-over-HTTPS presets | Helium's Settings → Privacy → Secure DNS offers Cloudflare, NextDNS, Quad9 and Google. For Mullvad, add the custom address `https://dns.mullvad.net/dns-query` | Helium |
 | Your own services | Helium's filter-list mirror, bangs and extension proxy run on your machine instead of imputnet's servers | `services/` |
 
-<img src="docs/img/popup.png" alt="The Archium popup with network mode, WebRTC switch and search addresses" width="260" align="right">
+<img src="docs/img/popup.png" alt="The Hillium popup with network mode, WebRTC switch and search addresses" width="260" align="right">
 
 ## Install
 
 You need macOS on Apple silicon or Intel, [Helium](https://github.com/imputnet/helium-macos/releases), and [Homebrew](https://brew.sh).
 
-1. **Get the code.** Clone this repository: `git clone https://github.com/Gitguy268/archium.git`
+1. **Get the code.** Clone this repository: `git clone https://github.com/Gitguy268/hillium.git`
 2. **Start local search.** Double-click `searxng/install.command`, or run:
    ```sh
    brew install uv
@@ -104,12 +104,12 @@ You need macOS on Apple silicon or Intel, [Helium](https://github.com/imputnet/h
    SearXNG starts now and at every login. To remove it, run `searxng/uninstall.command`.
 3. **Load the extension.** In Helium open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked** and choose the `extension` folder.
 4. **Make SearXNG the default search engine.** Go to Settings → Search engine → Manage → Add, and enter:
-   - Name: `Archium Search`
+   - Name: `Hillium Search`
    - Shortcut: `sx`
    - URL: `http://127.0.0.1:8888/search?q=%s`
 
    Then choose **Make default**.
-5. **For Tor:** run `brew install tor && brew services start tor`, or keep Tor Browser open and set the port to `9150`. Then pick **Tor** in the Archium toolbar popup.
+5. **For Tor:** run `brew install tor && brew services start tor`, or keep Tor Browser open and set the port to `9150`. Then pick **Tor** in the Hillium toolbar popup.
 
 <details>
 <summary><b>Optional: run Helium's services yourself</b></summary>
@@ -153,7 +153,7 @@ Helium can fetch filter lists, bangs and extensions through imputnet's servers. 
 
 ```sh
 node --test extension/ browser/test/*.test.js   # unit tests (no dependencies)
-cd browser && npm ci && npm run e2e        # Archium Browser end to end (Playwright)
+cd browser && npm ci && npm run e2e        # Hillium Browser end to end (Playwright)
 HELIUM=/Applications/Helium.app \
 PLAYWRIGHT=/path/to/node_modules/playwright/index.mjs \
 node tests/e2e.mjs                         # 11 end-to-end checks in a real Helium
@@ -171,6 +171,6 @@ CI runs the unit tests, JSON checks and shellcheck. It does not build a browser,
 
 ## Credits
 
-Archium builds on [Helium](https://github.com/imputnet/helium) by imputnet, which builds on [ungoogled-chromium](https://github.com/ungoogled-software/ungoogled-chromium). Search is [SearXNG](https://github.com/searxng/searxng). Archium Browser runs on [Electron](https://www.electronjs.org), blocks ads with [Ghostery's adblocker](https://github.com/ghostery/adblocker), and runs [MiniCPM-V](https://huggingface.co/openbmb/MiniCPM-V-4.7-1B-gguf) on [wllama](https://github.com/ngxson/wllama). See [NOTICE](NOTICE). Archium is not affiliated with any of these projects, or with Google or the Tor Project.
+Hillium builds on [Helium](https://github.com/imputnet/helium) by imputnet, which builds on [ungoogled-chromium](https://github.com/ungoogled-software/ungoogled-chromium). Search is [SearXNG](https://github.com/searxng/searxng). Hillium Browser runs on [Electron](https://www.electronjs.org), blocks ads with [Ghostery's adblocker](https://github.com/ghostery/adblocker), and runs [MiniCPM-V](https://huggingface.co/openbmb/MiniCPM-V-4.7-1B-gguf) on [wllama](https://github.com/ngxson/wllama). See [NOTICE](NOTICE). Hillium is not affiliated with any of these projects, or with Google or the Tor Project.
 
 GPL-3.0 © Lucas Van De Weerd. See [LICENSE](LICENSE).

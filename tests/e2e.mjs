@@ -1,4 +1,4 @@
-// End-to-end check of Archium Home inside a real Helium build.
+// End-to-end check of Hillium Home inside a real Helium build.
 // Usage: HELIUM=/path/to/Helium.app PLAYWRIGHT=/path/to/node_modules/playwright/index.mjs node tests/e2e.mjs
 import assert from "node:assert/strict";
 import http from "node:http";
@@ -20,7 +20,7 @@ await new Promise((r) => server.listen(0, "127.0.0.1", r));
 const publicSearch = `http://127.0.0.1:${server.address().port}`;
 const deadLocal = "http://127.0.0.1:1"; // nothing listens here: local SearXNG "not running"
 
-const profile = await mkdtemp(join(tmpdir(), "archium-e2e-"));
+const profile = await mkdtemp(join(tmpdir(), "hillium-e2e-"));
 const context = await chromium.launchPersistentContext(profile, {
   executablePath: join(app, "Contents/MacOS/Helium"),
   headless: !process.env.HEADED,
@@ -68,7 +68,7 @@ try {
     assert.deepEqual(external, []);
   });
 
-  await check("Helium shows Archium Home as the new tab page", async () => {
+  await check("Helium shows Hillium Home as the new tab page", async () => {
     const page = await context.newPage();
     await page.goto("chrome://newtab/");
     await page.waitForSelector("#clock:not(:empty)", { timeout: 5000 });
@@ -94,8 +94,8 @@ try {
     await setSettings({ mode: "direct", localSearch: deadLocal, publicSearch });
     await settle();
     const page = await context.newPage();
-    await page.goto(`${deadLocal}/search?q=archium+test`).catch(() => {});
-    await landsOn(page, `${publicSearch}/search?q=archium+test`);
+    await page.goto(`${deadLocal}/search?q=hillium+test`).catch(() => {});
+    await landsOn(page, `${publicSearch}/search?q=hillium+test`);
     await page.close();
   });
 

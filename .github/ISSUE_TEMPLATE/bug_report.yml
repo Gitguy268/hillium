@@ -8,7 +8,7 @@ body:
     attributes:
       value: |
         **If traffic leaks around Tor, the proxy or the kill switch, do not report it here.**
-        Follow [SECURITY.md](https://github.com/Gitguy268/archium/blob/HEAD/SECURITY.md) instead.
+        Follow [SECURITY.md](https://github.com/Gitguy268/hillium/blob/HEAD/SECURITY.md) instead.
 
   - type: textarea
     id: what
@@ -41,7 +41,7 @@ body:
     id: console
     attributes:
       label: Anything in the extension's console?
-      description: chrome://extensions → Archium Home → "service worker" link. Paste anything red.
+      description: chrome://extensions → Hillium Home → "service worker" link. Paste anything red.
       render: text
 
   - type: checkboxes

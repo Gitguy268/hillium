@@ -1,4 +1,4 @@
-// archium://downloads/: files saved from web pages, newest first.
+// hillium://downloads/: files saved from web pages, newest first.
 import { api, applyLook, hostOf } from "/shared/page-api.js";
 import { drawNav } from "/pages/nav.js";
 

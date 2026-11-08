@@ -1,4 +1,4 @@
-/* Archium's tab pages: settings, history, bookmarks, downloads. */
+/* Hillium's tab pages: settings, history, bookmarks, downloads. */
 body { margin: 0; min-height: 100vh; background: var(--surface); color: var(--fg); }
 .page { display: flex; min-height: 100vh; }
 .nav { position: sticky; top: 0; align-self: flex-start; width: 220px; padding: 28px 12px; flex: none; }

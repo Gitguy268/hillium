@@ -18,8 +18,8 @@ export const FILES = Object.keys(MANIFEST.files); // language model first, then 
 export const TOTAL_BYTES = FILES.reduce((n, f) => n + MANIFEST.files[f].totalSize, 0);
 
 // Copies already on this Mac (other projects' downloads). Hard-linked when the hash matches.
-// ARCHIUM_NO_LOCAL_MODEL=1 skips them, so tests can exercise the download.
-const LOCAL_COPIES = process.env.ARCHIUM_NO_LOCAL_MODEL ? [] : [join(homedir(), "minimind-mermaid", "gguf")];
+// HILLIUM_NO_LOCAL_MODEL=1 skips them, so tests can exercise the download.
+const LOCAL_COPIES = process.env.HILLIUM_NO_LOCAL_MODEL ? [] : [join(homedir(), "minimind-mermaid", "gguf")];
 
 export const modelDir = () => join(app.getPath("userData"), "models", `minicpm-v-${MANIFEST.revision.slice(0, 8)}`);
 const fileUrl = (name) => `https://huggingface.co/${MANIFEST.repo}/resolve/${MANIFEST.revision}/${name}`;

@@ -1,9 +1,9 @@
-// Archium's tab pages talk to the browser through POST /api/<name> on their own origin;
-// each page sends the token Archium wrote into its HTML, so no other page can make the call.
-const token = document.querySelector('meta[name="archium-token"]')?.content ?? "";
+// Hillium's tab pages talk to the browser through POST /api/<name> on their own origin;
+// each page sends the token Hillium wrote into its HTML, so no other page can make the call.
+const token = document.querySelector('meta[name="hillium-token"]')?.content ?? "";
 
 export async function api(name, body = {}) {
-  const res = await fetch(`/api/${name}`, { method: "POST", headers: { "content-type": "application/json", "x-archium-token": token }, body: JSON.stringify(body) });
+  const res = await fetch(`/api/${name}`, { method: "POST", headers: { "content-type": "application/json", "x-hillium-token": token }, body: JSON.stringify(body) });
   const data = await res.json();
   if (!res.ok) throw new Error(data?.error ?? `${name} failed`);
   return data;

@@ -1,4 +1,4 @@
-// archium://history/: visits grouped by day, newest first.
+// hillium://history/: visits grouped by day, newest first.
 import { api, applyLook, hostOf, siteIcon } from "/shared/page-api.js";
 import { drawNav } from "/pages/nav.js";
 

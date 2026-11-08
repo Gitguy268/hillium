@@ -1,4 +1,4 @@
-// archium://settings/
+// hillium://settings/
 import { api, applyLook } from "/shared/page-api.js";
 import { drawNav } from "/pages/nav.js";
 
@@ -23,9 +23,9 @@ function fill() {
   $("download-dir").textContent = s.downloadDir || data.downloads;
 
   $("default-note").textContent = !data.packaged
-    ? "Install Archium.app first: running from source can't be the default browser."
+    ? "Install Hillium.app first: running from source can't be the default browser."
     : data.isDefault
-      ? "Archium is your default browser."
+      ? "Hillium is your default browser."
       : "Links from other apps open in another browser.";
   $("make-default").disabled = !data.packaged || data.isDefault;
 
@@ -87,7 +87,7 @@ function fill() {
     );
   }
   const v = data.versions;
-  $("version").textContent = `Archium ${v.archium} · Electron ${v.electron} · Chromium ${v.chromium}`;
+  $("version").textContent = `Hillium ${v.hillium} · Electron ${v.electron} · Chromium ${v.chromium}`;
 }
 
 form.addEventListener("change", async (e) => {

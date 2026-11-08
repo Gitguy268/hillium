@@ -15,12 +15,12 @@ for size in 16 32 48 128; do
 done
 sips -z 512 512 "$src" --out logo-512.png >/dev/null
 
-set_dir="$tmp/Archium.iconset"
+set_dir="$tmp/Hillium.iconset"
 mkdir "$set_dir"
 for size in 16 32 128 256 512; do
   sips -z "$size" "$size" "$src" --out "$set_dir/icon_${size}x${size}.png" >/dev/null
   double=$((size * 2))
   sips -z "$double" "$double" "$src" --out "$set_dir/icon_${size}x${size}@2x.png" >/dev/null
 done
-iconutil -c icns "$set_dir" -o Archium.icns
+iconutil -c icns "$set_dir" -o Hillium.icns
 echo "Icons written."

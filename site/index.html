@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Archium: a privacy layer for Helium</title>
-  <meta name="description" content="Archium adds an offline new tab, local SearXNG search, a Tor switch with kill switch, a WebRTC leak block and a URL cleaner to the Helium browser.">
+  <title>Hillium: a privacy layer for Helium</title>
+  <meta name="description" content="Hillium adds an offline new tab, local SearXNG search, a Tor switch with kill switch, a WebRTC leak block and a URL cleaner to the Helium browser.">
   <link rel="icon" href="logo.svg" type="image/svg+xml">
-  <link rel="canonical" href="https://gitguy268.github.io/archium/">
-  <meta property="og:title" content="Archium">
+  <link rel="canonical" href="https://gitguy268.github.io/hillium/">
+  <meta property="og:title" content="Hillium">
   <meta property="og:description" content="A privacy layer for the Helium browser.">
-  <meta property="og:image" content="https://gitguy268.github.io/archium/newtab-light.png">
+  <meta property="og:image" content="https://gitguy268.github.io/hillium/newtab-light.png">
   <style>
     :root {
       --bg: #f6f3ee; --surface: #fff; --text: #1d1b22; --muted: #5f5a6b;
@@ -53,30 +53,30 @@
   <main>
     <header>
       <img src="logo.svg" alt="">
-      <h1>Archium</h1>
+      <h1>Hillium</h1>
       <p class="tagline">A privacy layer for the Helium browser: an offline new tab, local search, a Tor switch with a kill switch, and a URL cleaner.</p>
       <p class="status">Companion kit for stock Helium on macOS. It is not a separate browser download yet.</p>
       <div class="cta">
-        <a class="primary" href="https://github.com/Gitguy268/archium#install">Install</a>
-        <a href="https://github.com/Gitguy268/archium">Source on GitHub</a>
-        <a href="https://github.com/Gitguy268/archium/blob/main/docs/threat-model.md">Threat model</a>
+        <a class="primary" href="https://github.com/Gitguy268/hillium#install">Install</a>
+        <a href="https://github.com/Gitguy268/hillium">Source on GitHub</a>
+        <a href="https://github.com/Gitguy268/hillium/blob/main/docs/threat-model.md">Threat model</a>
       </div>
     </header>
 
     <picture>
       <source srcset="newtab-dark.png" media="(prefers-color-scheme: dark)">
       <img class="shot" src="newtab-light.png" width="2560" height="1520"
-           alt="The Archium new tab page: a large clock, a search box and a row of quick links, with a label saying Browsing through Tor">
+           alt="The Hillium new tab page: a large clock, a search box and a row of quick links, with a label saying Browsing through Tor">
     </picture>
 
     <h2>What you get</h2>
     <div class="grid">
-      <div class="card"><span class="from">Archium</span><h3>Offline new tab</h3><p>Clock, search and quick links. It makes no network requests at all.</p></div>
-      <div class="card"><span class="from">Archium</span><h3>Local SearXNG</h3><p>Runs natively on your Mac without Docker, with a public instance as fallback.</p></div>
-      <div class="card"><span class="from">Archium</span><h3>Tor and proxy switch</h3><p>Route everything through your own Tor or any proxy with one click.</p></div>
-      <div class="card"><span class="from">Archium</span><h3>Kill switch</h3><p>If Tor drops, pages stop loading. Nothing falls back to a direct connection.</p></div>
-      <div class="card"><span class="from">Archium</span><h3>WebRTC leak block</h3><p>Stops WebRTC from revealing your local or real IP.</p></div>
-      <div class="card"><span class="from">Archium</span><h3>URL cleaner</h3><p>Strips <code>utm_*</code>, <code>fbclid</code>, <code>gclid</code> and similar, offline.</p></div>
+      <div class="card"><span class="from">Hillium</span><h3>Offline new tab</h3><p>Clock, search and quick links. It makes no network requests at all.</p></div>
+      <div class="card"><span class="from">Hillium</span><h3>Local SearXNG</h3><p>Runs natively on your Mac without Docker, with a public instance as fallback.</p></div>
+      <div class="card"><span class="from">Hillium</span><h3>Tor and proxy switch</h3><p>Route everything through your own Tor or any proxy with one click.</p></div>
+      <div class="card"><span class="from">Hillium</span><h3>Kill switch</h3><p>If Tor drops, pages stop loading. Nothing falls back to a direct connection.</p></div>
+      <div class="card"><span class="from">Hillium</span><h3>WebRTC leak block</h3><p>Stops WebRTC from revealing your local or real IP.</p></div>
+      <div class="card"><span class="from">Hillium</span><h3>URL cleaner</h3><p>Strips <code>utm_*</code>, <code>fbclid</code>, <code>gclid</code> and similar, offline.</p></div>
       <div class="card"><span class="from">Helium</span><h3>uBlock Origin built in</h3><p>Blocks ads, trackers and cookie banners out of the box.</p></div>
       <div class="card"><span class="from">Helium</span><h3>Fingerprint noise</h3><p>Adds noise to canvas, audio and CPU core counts.</p></div>
       <div class="card"><span class="from">Helium</span><h3>DNS over HTTPS</h3><p>Presets for Quad9, Cloudflare and NextDNS, plus any custom address.</p></div>
@@ -85,11 +85,11 @@
     <h2>Install</h2>
     <ol>
       <li>Install <a href="https://github.com/imputnet/helium-macos/releases">Helium</a> and <a href="https://brew.sh">Homebrew</a>.</li>
-      <li>Clone <a href="https://github.com/Gitguy268/archium">the repository</a> and double-click <code>searxng/install.command</code>.</li>
+      <li>Clone <a href="https://github.com/Gitguy268/hillium">the repository</a> and double-click <code>searxng/install.command</code>.</li>
       <li>In Helium, open <code>chrome://extensions</code>, turn on Developer mode and load the <code>extension</code> folder.</li>
       <li>Add <code>http://127.0.0.1:8888/search?q=%s</code> as a search engine and make it the default.</li>
     </ol>
-    <p class="note">Tor through Archium hides your IP, but not your browser fingerprint. If you need anonymity, use Tor Browser.</p>
+    <p class="note">Tor through Hillium hides your IP, but not your browser fingerprint. If you need anonymity, use Tor Browser.</p>
 
     <footer>
       GPL-3.0 © Lucas Van De Weerd. Built on <a href="https://github.com/imputnet/helium">Helium</a> and

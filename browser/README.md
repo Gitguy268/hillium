@@ -1,20 +1,20 @@
-# Archium Browser
+# Hillium Browser
 
-A Chromium browser for macOS with Archium's privacy features built in. Tabs, the address field and the buttons live in a sidebar, as in Zen, and the page sits next to it as a card. You can also put the tabs on top for a Chrome-style window, or switch to the Windows 98 or Liquid Glass look. Electron supplies the engine, so it runs without compiling Chromium.
+A Chromium browser for macOS with Hillium's privacy features built in. Tabs, the address field and the buttons live in a sidebar, as in Zen, and the page sits next to it as a card. You can also put the tabs on top for a Chrome-style window, or switch to the Windows 98 or Liquid Glass look. Electron supplies the engine, so it runs without compiling Chromium.
 
 ## Install
 
 ```sh
 npm ci
-npm run dist          # builds dist/mac-arm64/Archium.app (unsigned, signed ad hoc)
+npm run dist          # builds dist/mac-arm64/Hillium.app (unsigned, signed ad hoc)
 npm run install-app   # copies it to /Applications
 ```
 
-Then choose Archium under System Settings › Desktop & Dock › Default web browser, or click **Make Default** in Archium's settings.
+Then choose Hillium under System Settings › Desktop & Dock › Default web browser, or click **Make Default** in Hillium's settings.
 
 To run it from this folder instead, double-click `start.command`, or run `npm start`. The first run installs Electron and the ad blocker (about 350 MB, needs Node.js 20 or later). Running from source can't be the default browser.
 
-Your data lives in `~/Library/Application Support/Archium Browser`. Search uses the SearXNG from `../searxng/install.sh` at `127.0.0.1:8888`. When it isn't running, searches go to the public fallback.
+Your data lives in `~/Library/Application Support/Hillium Browser`. Search uses the SearXNG from `../searxng/install.sh` at `127.0.0.1:8888`. When it isn't running, searches go to the public fallback.
 
 ## What's in it
 
@@ -28,7 +28,7 @@ Your data lives in `~/Library/Application Support/Archium Browser`. Search uses 
 | **Pages** | Settings, History, Bookmarks and Downloads open as tabs (⌘, ⌘Y ⌥⌘B ⇧⌘J) |
 | **Downloads** | Files go straight to Downloads, or ask each time. A progress ring on the downloads button |
 | **Import** | Bookmarks from Chrome, Brave, Edge, Helium, Vivaldi, Firefox, Zen, Waterfox and LibreWolf, from Settings |
-| **Privacy** | Ghostery's ad blocker with EasyList, EasyPrivacy and the cookie-notice lists. Archium's URL cleaner. Tor or a proxy with a kill switch for every tab. A WebRTC leak block. Private tabs (⇧⌘N) in a separate in-memory session |
+| **Privacy** | Ghostery's ad blocker with EasyList, EasyPrivacy and the cookie-notice lists. Hillium's URL cleaner. Tor or a proxy with a kill switch for every tab. A WebRTC leak block. Private tabs (⇧⌘N) in a separate in-memory session |
 | **Assistant** | ⇧⌘A, or the speech-bubble button. MiniCPM-V 4.7 1B on this Mac: it summarizes the page, answers questions about it and describes a screenshot. Private tabs are never read |
 | **Looks** | Normal follows macOS light, dark and accent colour. Liquid Glass puts native glass behind the sidebar. Windows 98 has a caption bar, a coolbar and a status bar |
 
@@ -74,9 +74,9 @@ The [int4 checkpoint](https://huggingface.co/openbmb/MiniCPM-V-4.7-1B-int4) is a
   - `sessions.js`: proxy, permissions and the request filter for every session.
   - `filter.js`: the single `onBeforeRequest` dispatcher. The order is Ghostery, then the URL cleaner, then the Tor search redirect.
   - `suggest.js`: address bar ranking. `importers.js`: bookmark import. `downloads.js`: downloads.
-  - `protocol.js` and `pages.js`: `archium://` and the data behind its pages.
-- **`ui/`** holds Archium's own pages: `chrome.html` (sidebar, toolbar, popovers), `assistant.html`, `newtab/` and `pages/` (settings, history, bookmarks, downloads).
-- **Archium pages in tabs.** They run in the web session without Node or a preload. Each gets a per-launch token in its HTML, and its data endpoints refuse requests without it, so web pages can't read or change them. Web pages also can't navigate to, open or frame `archium://` pages.
+  - `protocol.js` and `pages.js`: `hillium://` and the data behind its pages.
+- **`ui/`** holds Hillium's own pages: `chrome.html` (sidebar, toolbar, popovers), `assistant.html`, `newtab/` and `pages/` (settings, history, bookmarks, downloads).
+- **Hillium pages in tabs.** They run in the web session without Node or a preload. Each gets a per-launch token in its HTML, and its data endpoints refuse requests without it, so web pages can't read or change them. Web pages also can't navigate to, open or frame `hillium://` pages.
 - **Reused from the extension.** `../extension/lib.js` (proxy, WebRTC, search fallback) and `../extension/url-cleaner.json` are imported directly, so the extension and the browser stay in step. The packaged app carries copies in its Resources folder.
 - **Popovers.** While one is open, the toolbar page moves above the web page. Its background gets holes where the page and the assistant are, so they show through.
 

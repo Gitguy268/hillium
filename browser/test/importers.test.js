@@ -25,7 +25,7 @@ test("Chromium bookmarks keep their folders; the bar's own name is left out", ()
 });
 
 test("Firefox places.sqlite: bookmarks with folders, tags skipped", () => {
-  const dir = mkdtempSync(join(tmpdir(), "archium-places-"));
+  const dir = mkdtempSync(join(tmpdir(), "hillium-places-"));
   try {
     const file = join(dir, "places.sqlite");
     const db = new DatabaseSync(file);

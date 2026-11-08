@@ -1,4 +1,4 @@
-// One browser window: the toolbar page (archium://app/chrome.html) fills the window, the
+// One browser window: the toolbar page (hillium://app/chrome.html) fills the window, the
 // active tab's page sits in the rectangle the toolbar reports, and the assistant panel
 // sits beside it. Only the active tab's view is attached; the rest stay alive off-screen.
 import { BaseWindow, WebContentsView, Menu, clipboard, nativeImage, nativeTheme } from "electron";
@@ -13,8 +13,8 @@ import { toUrl } from "./url.js";
 
 export { toUrl };
 
-export const PRELOAD = fileURLToPath(new URL("../preload/archium.cjs", import.meta.url));
-export const NEWTAB = "archium://newtab/";
+export const PRELOAD = fileURLToPath(new URL("../preload/hillium.cjs", import.meta.url));
+export const NEWTAB = "hillium://newtab/";
 
 let liquidGlass = null;
 try {
@@ -64,7 +64,7 @@ export class Shell {
       height: 840,
       minWidth: 560,
       minHeight: 380,
-      title: "Archium",
+      title: "Hillium",
       show: false,
       // Transparent so the Liquid Glass look can put native glass behind the toolbar.
       transparent: true,
@@ -76,7 +76,7 @@ export class Shell {
     this.win.contentView.addChildView(this.ui);
     this.fitUi();
     this.guard(this.ui.webContents);
-    this.ui.webContents.loadURL("archium://app/chrome.html");
+    this.ui.webContents.loadURL("hillium://app/chrome.html");
     this.ui.webContents.once("did-finish-load", () => {
       this.applyMaterial();
       this.win.show();
@@ -95,10 +95,10 @@ export class Shell {
     if (!this.activeId) this.activate(this.tabs.find((t) => !t.pinned)?.id ?? this.tabs[0].id);
   }
 
-  // Archium's own pages may never navigate away or open windows.
+  // Hillium's own pages may never navigate away or open windows.
   guard(wc) {
     wc.on("will-navigate", (e, url) => {
-      if (!url.startsWith("archium://app/")) e.preventDefault();
+      if (!url.startsWith("hillium://app/")) e.preventDefault();
     });
     wc.setWindowOpenHandler(({ url }) => {
       if (/^https?:/.test(url)) this.createTab(url);
@@ -136,8 +136,8 @@ export class Shell {
     });
     const tab = { id: nextTabId++, view, private: isPrivate, pinned: pinned && !isPrivate, title: "New Tab", url, favicon: "", loading: true, audible: false, muted: false };
     const wc = view.webContents;
-    // archium:// pages may link to each other; web pages may not reach them at all.
-    const fromOwnPage = () => wc.getURL().startsWith("archium://");
+    // hillium:// pages may link to each other; web pages may not reach them at all.
+    const fromOwnPage = () => wc.getURL().startsWith("hillium://");
 
     wc.on("page-title-updated", (_, title) => {
       tab.title = title;
@@ -187,13 +187,13 @@ export class Shell {
       this.push();
     });
     wc.on("will-navigate", (e, target) => {
-      if (target.startsWith("archium:") && !fromOwnPage()) e.preventDefault();
+      if (target.startsWith("hillium:") && !fromOwnPage()) e.preventDefault();
     });
     wc.on("will-frame-navigate", (e) => {
-      if (!e.isMainFrame && e.url.startsWith("archium:")) e.preventDefault();
+      if (!e.isMainFrame && e.url.startsWith("hillium:")) e.preventDefault();
     });
     wc.on("will-redirect", (e, target) => {
-      if (target.startsWith("archium:")) e.preventDefault();
+      if (target.startsWith("hillium:")) e.preventDefault();
     });
     wc.on("audio-state-changed", (e) => {
       tab.audible = e.audible;
@@ -206,7 +206,7 @@ export class Shell {
     });
     wc.on("found-in-page", (_, result) => this.ui.webContents.send("found", result));
     wc.setWindowOpenHandler(({ url: target, disposition }) => {
-      if (/^https?:/.test(target) || (target.startsWith("archium:") && fromOwnPage())) {
+      if (/^https?:/.test(target) || (target.startsWith("hillium:") && fromOwnPage())) {
         const at = this.tabs.indexOf(tab) + 1;
         this.createTab(target, { private: tab.private, background: disposition === "background-tab", index: at });
       }
@@ -236,7 +236,7 @@ export class Shell {
 
   backgroundFor(url) {
     if (url.startsWith(NEWTAB)) return "#00000000";
-    if (url.startsWith("archium:")) return nativeTheme.shouldUseDarkColors ? "#1c1c1e" : "#ffffff";
+    if (url.startsWith("hillium:")) return nativeTheme.shouldUseDarkColors ? "#1c1c1e" : "#ffffff";
     return "#ffffff";
   }
 
@@ -349,13 +349,13 @@ export class Shell {
     this.hooks.spawn([{ url, pinned: false }]);
   }
 
-  // Opens one of Archium's own pages, or switches to it if it's already open here.
+  // Opens one of Hillium's own pages, or switches to it if it's already open here.
   openPage(host) {
-    const open = this.tabs.find((t) => t.url.startsWith(`archium://${host}/`));
+    const open = this.tabs.find((t) => t.url.startsWith(`hillium://${host}/`));
     if (open) return this.activate(open.id);
     const blank = this.active?.url.startsWith(NEWTAB) && !this.active.private ? this.active : null;
-    if (blank) return void blank.view.webContents.loadURL(`archium://${host}/`);
-    this.createTab(`archium://${host}/`);
+    if (blank) return void blank.view.webContents.loadURL(`hillium://${host}/`);
+    this.createTab(`hillium://${host}/`);
   }
 
   navigate(text, { newTab = false } = {}) {
@@ -449,7 +449,7 @@ export class Shell {
       this.assistant.setBackgroundColor("#00000000");
       this.guard(this.assistant.webContents);
       this.assistant.webContents.on("did-finish-load", () => this.push());
-      this.assistant.webContents.loadURL("archium://app/assistant.html");
+      this.assistant.webContents.loadURL("hillium://app/assistant.html");
     }
     if (this.assistantOpen) this.stack();
     else if (this.assistant) this.win.contentView.removeChildView(this.assistant);
@@ -609,11 +609,11 @@ export class Shell {
     });
   }
 
-  // Theme change: the window material, the toolbar, and every Archium page follow.
+  // Theme change: the window material, the toolbar, and every Hillium page follow.
   refreshLook() {
     this.applyMaterial();
     this.place();
-    for (const t of this.tabs) if (t.url.startsWith("archium://")) t.view.webContents.reload();
+    for (const t of this.tabs) if (t.url.startsWith("hillium://")) t.view.webContents.reload();
     this.push();
   }
 

@@ -1,10 +1,10 @@
 # Roadmap
 
-## Now: companion kit and Archium Browser (done)
+## Now: companion kit and Hillium Browser (done)
 
-- **Companion kit.** The Archium Home extension, the native SearXNG installer, self-hosted Helium services, the logo and the docs. Everything runs on a stock Helium release.
-- **Archium Browser** (`browser/`). An Electron shell you can run without compiling Chromium. It includes:
-  - Archium's protection in every session;
+- **Companion kit.** The Hillium Home extension, the native SearXNG installer, self-hosted Helium services, the logo and the docs. Everything runs on a stock Helium release.
+- **Hillium Browser** (`browser/`). An Electron shell you can run without compiling Chromium. It includes:
+  - Hillium's protection in every session;
   - Ghostery ad blocking;
   - the Normal, Windows 98 and Liquid Glass looks;
   - Glance;
@@ -13,9 +13,9 @@
 
   Still to come: a signed `.app` built with electron-builder, a downloads list, and profiles.
 
-## Next: Archium builds
+## Next: Hillium builds
 
-Archium becomes its own app: a Helium build with Archium's name, icon and defaults compiled in.
+Hillium becomes its own app: a Helium build with Hillium's name, icon and defaults compiled in.
 
 **What's needed:**
 - a Mac with full Xcode (not only the Command Line Tools);
@@ -25,13 +25,13 @@ Archium becomes its own app: a Helium build with Archium's name, icon and defaul
 Free GitHub runners can't build Chromium, so releases will be built locally.
 
 **Plan:**
-1. Fork [`imputnet/helium-macos`](https://github.com/imputnet/helium-macos) as `archium-macos`, and fork [`imputnet/helium`](https://github.com/imputnet/helium) for its submodule.
-2. Add a `patches/archium/` series that applies after Helium's patches. Each one follows the Helium patch it builds on:
+1. Fork [`imputnet/helium-macos`](https://github.com/imputnet/helium-macos) as `hillium-macos`, and fork [`imputnet/helium`](https://github.com/imputnet/helium) for its submodule.
+2. Add a `patches/hillium/` series that applies after Helium's patches. Each one follows the Helium patch it builds on:
 
    | Patch | Builds on |
    |---|---|
    | Branding: name, icons, bundle ID | `change-chromium-branding.patch`, `helium-logo-icons.patch` |
-   | Archium Home as a built-in component extension, so it can't be switched off | `ublock-install-as-component.patch` |
+   | Hillium Home as a built-in component extension, so it can't be switched off | `ublock-install-as-component.patch` |
    | Local SearXNG as the default search engine | `search/engine-defaults.patch` |
    | Your services origin as the default | `services-prefs.patch` |
    | Mullvad in the Secure DNS list | `network/dns-providers.patch` |

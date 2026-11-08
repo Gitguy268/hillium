@@ -1,4 +1,4 @@
-// The new tab page. Everything is local: shortcuts show the icons Archium already saved
+// The new tab page. Everything is local: shortcuts show the icons Hillium already saved
 // when the sites were visited, and nothing is fetched from the network. Shortcuts are the
 // ones you added, then your most visited sites.
 import { paintClouds, paintAurora } from "/shared/wallpaper.js";

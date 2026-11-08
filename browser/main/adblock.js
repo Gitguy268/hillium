@@ -34,7 +34,7 @@ export async function startAdblock() {
   try {
     blocker = await build();
   } catch (e) {
-    console.warn(`[archium] ad blocker lists unavailable: ${e.message}`);
+    console.warn(`[hillium] ad blocker lists unavailable: ${e.message}`);
     return null;
   }
   // Wrapped, so a refreshed engine takes over without re-registering.

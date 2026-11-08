@@ -1,7 +1,7 @@
 # wllama, vendored
 
 llama.cpp compiled to WebAssembly, with its WebGPU backend, as the assistant's engine
-(`ui/assistant.js`). Loaded on demand from `archium://app`; nothing comes from a CDN.
+(`ui/assistant.js`). Loaded on demand from `hillium://app`; nothing comes from a CDN.
 Copied unchanged from Paint97 (`win97-excalidraw-claude/public/vendor/wllama/`).
 
 | | |

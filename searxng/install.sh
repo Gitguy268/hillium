@@ -3,11 +3,11 @@
 set -eu
 
 SEARXNG_COMMIT="a9d99003344ac3879ec45c56c661283482a92a39" # 2026-09-30
-PORT="${ARCHIUM_SEARXNG_PORT:-8888}"
-HOME_DIR="$HOME/Library/Application Support/Archium/searxng"
-LABEL="org.archium.searxng"
+PORT="${HILLIUM_SEARXNG_PORT:-8888}"
+HOME_DIR="$HOME/Library/Application Support/Hillium/searxng"
+LABEL="org.hillium.searxng"
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
-LOG="$HOME/Library/Logs/Archium/searxng.log"
+LOG="$HOME/Library/Logs/Hillium/searxng.log"
 
 command -v uv >/dev/null 2>&1 || { echo "uv is required: brew install uv" >&2; exit 1; }
 
@@ -30,7 +30,7 @@ if [ ! -f settings.yml ]; then
   cat > settings.yml <<EOF
 use_default_settings: true
 general:
-  instance_name: "Archium Search"
+  instance_name: "Hillium Search"
 search:
   formats: [html, json]
 server:

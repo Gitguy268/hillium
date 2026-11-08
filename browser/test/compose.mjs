@@ -1,11 +1,11 @@
-// Test helper: a picture of a whole Archium window without macOS screen-recording rights.
+// Test helper: a picture of a whole Hillium window without macOS screen-recording rights.
 // Captures the toolbar page, the active tab and the assistant with capturePage and paints
 // them in stacking order. Native glass is an OS layer, so it can't appear: transparent
 // areas show a diagonal-stripe "desktop" instead, which also shows any CSS refraction.
 // backdrop "plain" paints a soft neutral wash instead, for pictures in the README.
 export async function composeWindow(app, which = 0, backdrop = "stripes") {
   const dataUrl = await app.evaluate(async ({ BrowserWindow }, [which, backdrop]) => {
-    const shell = [...globalThis.__archium.shells][which];
+    const shell = [...globalThis.__hillium.shells][which];
     const { width, height } = shell.win.getContentBounds();
     const parts = [];
     const add = async (view) => {

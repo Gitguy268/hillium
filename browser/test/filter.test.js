@@ -23,7 +23,7 @@ test("only documents are cleaned; scripts and images pass untouched", () => {
   assert.deepEqual(decide({ url, resourceType: "mainFrame" }, direct), { redirectURL: "https://a.example/" });
   assert.deepEqual(decide({ url, resourceType: "subFrame" }, direct), { redirectURL: "https://a.example/" });
   assert.deepEqual(decide({ url, resourceType: "script" }, direct), {});
-  assert.deepEqual(decide({ url: "archium://newtab/?utm_source=x", resourceType: "mainFrame" }, direct), {});
+  assert.deepEqual(decide({ url: "hillium://newtab/?utm_source=x", resourceType: "mainFrame" }, direct), {});
 });
 
 test("Tor mode sends local searches to the public instance, cleaned", () => {
@@ -44,11 +44,11 @@ test("dispatcher: the ad blocker answers first, then the cleaner", async () => {
   assert.deepEqual(blocked, ["https://ads.example/x.js"]);
 });
 
-test("dispatcher works before the block lists load, and skips Archium's own pages", async () => {
+test("dispatcher works before the block lists load, and skips Hillium's own pages", async () => {
   let asked = false;
   const dispatch = createDispatcher({ getSettings: () => direct, getBlocker: () => null });
   assert.deepEqual(await run(dispatch, { url: "https://a.example/?fbclid=1", resourceType: "mainFrame" }), { redirectURL: "https://a.example/" });
   const guarded = createDispatcher({ getSettings: () => direct, getBlocker: () => ({ onBeforeRequest: () => (asked = true) }) });
-  assert.deepEqual(await run(guarded, { url: "archium://app/chrome.html", resourceType: "mainFrame" }), {});
+  assert.deepEqual(await run(guarded, { url: "hillium://app/chrome.html", resourceType: "mainFrame" }), {});
   assert.equal(asked, false);
 });

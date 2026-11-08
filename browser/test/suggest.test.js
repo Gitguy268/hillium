@@ -64,5 +64,5 @@ test("page API: only the page's own token, POST and JSON get through", () => {
   assert.equal(apiAllowed({ ...good, token: null }, "settings"), false);
   assert.equal(apiAllowed({ ...good, method: "GET" }, "settings"), false);
   assert.equal(apiAllowed({ ...good, contentType: "text/plain" }, "settings"), false);
-  assert.match(withToken("<html><head><title>x</title>", "history"), new RegExp(`<meta name="archium-token" content="${tokenFor("history")}">`));
+  assert.match(withToken("<html><head><title>x</title>", "history"), new RegExp(`<meta name="hillium-token" content="${tokenFor("history")}">`));
 });

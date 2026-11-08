@@ -17,7 +17,7 @@ export const resetBlocked = (id) => blockedBy.delete(id);
 export const proxyStatus = () => proxyError;
 
 // Camera, microphone, location and notifications are asked once per site; normal tabs
-// remember the answer (changed in the site panel), private tabs only until Archium quits.
+// remember the answer (changed in the site panel), private tabs only until Hillium quits.
 const ALWAYS = new Set(["fullscreen", "clipboard-sanitized-write", "pointerLock"]);
 const SESSION_ONLY = new Set(["midi", "clipboard-read"]);
 const answers = new Map(); // private tabs and SESSION_ONLY kinds: key → true/false
@@ -81,7 +81,7 @@ function webPermissions(ses) {
       defaultId: 0,
       cancelId: 0,
       message: `Allow ${new URL(origin).host} to ${permissionLabel(permission, details)}?`,
-      detail: ses === sessions.private ? "Remembered until you quit Archium." : "You can change this later: click the icon left of the address.",
+      detail: ses === sessions.private ? "Remembered until you quit Hillium." : "You can change this later: click the icon left of the address.",
     });
     remember(ses, origin, permission, details.mediaTypes, response === 1);
     callback(response === 1);
@@ -110,13 +110,13 @@ export function setupSessions(changed) {
   onChange = changed;
   sessions = {
     tabs: session.defaultSession,
-    private: session.fromPartition("archium-private"), // in memory: gone when Archium quits
-    ui: session.fromPartition("persist:archium-ui"),
+    private: session.fromPartition("hillium-private"), // in memory: gone when Hillium quits
+    ui: session.fromPartition("persist:hillium-ui"),
     // persist: Chromium can't read back a 1.6 GB Blob in an in-memory session.
-    ai: session.fromPartition("persist:archium-ai"),
+    ai: session.fromPartition("persist:hillium-ai"),
   };
   // Look like Chrome: "Electron" and the app name in the user agent get pages blocked.
-  const ua = app.userAgentFallback.replace(/ (Electron|archium-browser|Archium)\/\S+/g, "");
+  const ua = app.userAgentFallback.replace(/ (Electron|hillium-browser|Hillium)\/\S+/g, "");
   app.userAgentFallback = ua;
 
   const dispatcher = createDispatcher({

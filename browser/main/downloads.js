@@ -1,6 +1,6 @@
 // Downloads from web pages: saved straight to the downloads folder (or asked, if set),
-// tracked for the toolbar button and archium://downloads/. Private-tab downloads are listed
-// while Archium runs but never written to downloads.json.
+// tracked for the toolbar button and hillium://downloads/. Private-tab downloads are listed
+// while Hillium runs but never written to downloads.json.
 import { app, shell as desktop } from "electron";
 import { existsSync } from "node:fs";
 import { join, parse } from "node:path";

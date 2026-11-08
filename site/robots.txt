@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://gitguy268.github.io/archium/sitemap.xml
+Sitemap: https://gitguy268.github.io/hillium/sitemap.xml

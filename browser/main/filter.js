@@ -13,7 +13,7 @@ export const TRACKING_PARAMS = new Set(
 );
 
 const DOCUMENTS = new Set(["mainFrame", "subFrame"]);
-const INTERNAL = /^(archium|devtools|chrome|data|blob|file):/;
+const INTERNAL = /^(hillium|devtools|chrome|data|blob|file):/;
 
 // The URL without tracking parameters, or null when there is nothing to remove.
 export function cleanUrl(url) {

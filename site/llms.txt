@@ -1,8 +1,8 @@
-# Archium
+# Hillium
 
 > A privacy layer for the Helium browser on macOS: an offline new tab page, local SearXNG search without Docker, a Tor/proxy switch with kill switch, a WebRTC leak block and an offline URL cleaner. Currently a companion kit (extension + scripts) for stock Helium, not a separate browser build.
 
-- [Source and install guide](https://github.com/Gitguy268/archium#install)
-- [Threat model](https://github.com/Gitguy268/archium/blob/main/docs/threat-model.md): what it does and doesn't protect against. Tor through Archium is not as anonymous as Tor Browser.
-- [Roadmap](https://github.com/Gitguy268/archium/blob/main/docs/roadmap.md): planned Archium builds as a Helium patch series.
+- [Source and install guide](https://github.com/Gitguy268/hillium#install)
+- [Threat model](https://github.com/Gitguy268/hillium/blob/main/docs/threat-model.md): what it does and doesn't protect against. Tor through Hillium is not as anonymous as Tor Browser.
+- [Roadmap](https://github.com/Gitguy268/hillium/blob/main/docs/roadmap.md): planned Hillium builds as a Helium patch series.
 - License: GPL-3.0

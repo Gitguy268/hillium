@@ -1,13 +1,13 @@
 #!/bin/sh
-# Double-click to run Archium Browser. The first run installs it (about 350 MB).
+# Double-click to run Hillium Browser. The first run installs it (about 350 MB).
 cd "$(dirname "$0")" || exit 1
 if ! command -v node >/dev/null 2>&1; then
-  echo "Archium needs Node.js 20 or later: https://nodejs.org (or: brew install node)"
+  echo "Hillium needs Node.js 20 or later: https://nodejs.org (or: brew install node)"
   read -r _
   exit 1
 fi
 if [ ! -d node_modules ]; then
-  echo "Installing Archium Browser (first run only)…"
+  echo "Installing Hillium Browser (first run only)…"
   npm ci --no-audit --no-fund || { echo "Install failed."; read -r _; exit 1; }
 fi
 # npm can skip Electron's download step (install scripts off); fetch it if missing.

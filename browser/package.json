@@ -1,8 +1,8 @@
 {
-  "name": "archium-browser",
+  "name": "hillium-browser",
   "version": "0.1.0",
   "private": true,
-  "description": "Archium Browser: a privacy-first Chromium browser with Zen-style side tabs, a local assistant and three looks.",
+  "description": "Hillium Browser: a privacy-first Chromium browser with Zen-style side tabs, a local assistant and three looks.",
   "license": "GPL-3.0-only",
   "author": "Lucas Van De Weerd",
   "type": "module",
@@ -28,8 +28,8 @@
     "electron-builder": "26.17.0"
   },
   "build": {
-    "appId": "org.archium.browser",
-    "productName": "Archium",
+    "appId": "org.hillium.browser",
+    "productName": "Hillium",
     "copyright": "Lucas Van De Weerd. GPL-3.0-only.",
     "asar": false,
     "npmRebuild": false,
@@ -75,7 +75,7 @@
       }
     ],
     "mac": {
-      "icon": "../branding/Archium.icns",
+      "icon": "../branding/Hillium.icns",
       "category": "public.app-category.productivity",
       "identity": null,
       "target": [

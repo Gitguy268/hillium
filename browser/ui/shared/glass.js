@@ -1,5 +1,5 @@
 // Real refraction (SVG displacement through backdrop-filter) on the given elements, via
-// kwlck/liquid-glass-web (MIT, vendored). Only Chromium renders it; that is what Archium runs.
+// kwlck/liquid-glass-web (MIT, vendored). Only Chromium renders it; that is what Hillium runs.
 import { createLiquidGlass } from "../vendor/liquid-glass-web/liquid-glass.js";
 
 export function glass(elements, options = {}) {

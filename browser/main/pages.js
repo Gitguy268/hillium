@@ -1,4 +1,4 @@
-// The data behind Archium's tab pages (new tab, settings, history, bookmarks, downloads).
+// The data behind Hillium's tab pages (new tab, settings, history, bookmarks, downloads).
 // Each function answers one POST /api/<name> from that page; protocol.js has already checked
 // that the request came from the page itself.
 import { app, dialog, systemPreferences, nativeTheme } from "electron";
@@ -66,7 +66,7 @@ export function createPagesApi({ applySettings, broadcast, sessions }) {
       packaged: app.isPackaged,
       isDefault: app.isPackaged && app.isDefaultProtocolClient("https"),
       downloads: app.getPath("downloads"),
-      versions: { archium: app.getVersion(), electron: process.versions.electron, chromium: process.versions.chrome },
+      versions: { hillium: app.getVersion(), electron: process.versions.electron, chromium: process.versions.chrome },
     }),
     set: async (patch) => {
       await applySettings(patch);

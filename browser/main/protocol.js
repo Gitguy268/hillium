@@ -1,8 +1,8 @@
-// archium:// serves the browser's own pages. It is registered per session:
-//   archium://app/…        the toolbar and assistant pages (UI and AI sessions only)
-//   archium://app/models/… the verified model files (AI session only; same origin as the
+// hillium:// serves the browser's own pages. It is registered per session:
+//   hillium://app/…        the toolbar and assistant pages (UI and AI sessions only)
+//   hillium://app/models/… the verified model files (AI session only; same origin as the
 //                          assistant, because custom schemes get no CORS)
-//   archium://newtab/, settings/, history/, bookmarks/, downloads/
+//   hillium://newtab/, settings/, history/, bookmarks/, downloads/
 //                          pages that open in tabs. Their data comes from POST /api/<name>,
 //                          which only the page itself may call (see api-guard.js).
 import { protocol, net } from "electron";
@@ -16,7 +16,7 @@ export const PAGES = ["newtab", "settings", "history", "bookmarks", "downloads"]
 
 protocol.registerSchemesAsPrivileged([
   {
-    scheme: "archium",
+    scheme: "hillium",
     privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true, codeCache: true },
   },
 ]);
@@ -66,7 +66,7 @@ const NEWTAB_FILES = /^\/(newtab|themes|shared|assets|vendor\/liquid-glass-web)\
 // hosts: which of "app", "models" and the PAGES this session may load.
 // api: { [host]: { [name]: async (body) => json } } for the tab pages.
 export function registerProtocol(ses, hosts, api = {}) {
-  ses.protocol.handle("archium", async (req) => {
+  ses.protocol.handle("hillium", async (req) => {
     const url = new URL(req.url);
     const host = url.hostname;
     if (!hosts.includes(host) || host === "models") return new Response("Forbidden", { status: 403 });
@@ -91,7 +91,7 @@ export function registerProtocol(ses, hosts, api = {}) {
     // A tab page: its data API, or its files.
     if (url.pathname.startsWith("/api/")) {
       const fn = api[host]?.[url.pathname.slice(5)];
-      const check = { method: req.method, token: req.headers.get("x-archium-token"), contentType: req.headers.get("content-type") };
+      const check = { method: req.method, token: req.headers.get("x-hillium-token"), contentType: req.headers.get("content-type") };
       if (!fn || !apiAllowed(check, host)) return new Response("Forbidden", { status: 403 });
       let body = {};
       try {

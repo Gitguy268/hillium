@@ -65,7 +65,7 @@ export function readChromiumBookmarks(json) {
 
 // places.sqlite → [{ title, url, folder }]. Tags and the built-in root folders are skipped.
 export function readPlaces(file) {
-  const dir = mkdtempSync(join(tmpdir(), "archium-import-"));
+  const dir = mkdtempSync(join(tmpdir(), "hillium-import-"));
   try {
     const copy = join(dir, "places.sqlite");
     copyFileSync(file, copy);
