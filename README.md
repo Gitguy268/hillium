@@ -51,7 +51,14 @@ A privacy layer for the [Helium](https://github.com/imputnet/helium) browser: of
 
 ## Hillium Browser
 
-Double-click `browser/start.command` (needs Node.js 20+). The first run installs about 350 MB.
+Install the release build with Homebrew (Apple silicon):
+
+```sh
+brew trust gitguy268/tap
+brew install --cask gitguy268/tap/hillium
+```
+
+It's signed ad hoc, not notarised, so the cask clears the quarantine flag. Or double-click `browser/start.command` to run it from source (needs Node.js 20+). The first run installs about 350 MB.
 
 <table>
 <tr>
