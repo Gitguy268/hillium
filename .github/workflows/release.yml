@@ -1,0 +1,75 @@
+name: Release
+
+# Builds Hillium.app for the Homebrew cask. Pull requests build it as a check; a v* tag also
+# attaches it to the GitHub Release.
+on:
+  push:
+    tags: ["v*"]
+  pull_request:
+    paths: [browser/**, extension/**, branding/**, .github/workflows/release.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  macos:
+    name: macOS app (arm64)
+    runs-on: macos-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: browser
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: browser/package-lock.json
+      - run: npm ci
+      - run: npm run dist
+      - name: Zip Hillium.app
+        run: |
+          version=$(node -p "require('./package.json').version")
+          ditto -c -k --sequesterRsrc --keepParent dist/mac-arm64/Hillium.app "dist/Hillium-$version-macos-arm64.zip"
+          (cd dist && shasum -a 256 Hillium-*.zip > SHA256SUMS && cat SHA256SUMS)
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: macos
+          path: |
+            browser/dist/Hillium-*-macos-arm64.zip
+            browser/dist/SHA256SUMS
+          if-no-files-found: error
+
+  release:
+    name: Attach to the GitHub Release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: macos
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: macos
+          path: out
+      - name: Create or update the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          files="out/Hillium-*.zip out/SHA256SUMS"
+          if gh release view "$TAG" -R "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            gh release upload "$TAG" $files --clobber -R "$GITHUB_REPOSITORY"
+          else
+            gh release create "$TAG" $files -R "$GITHUB_REPOSITORY" --verify-tag --title "Hillium ${TAG#v}" \
+              --notes "Hillium Browser for macOS (Apple silicon): \`brew trust gitguy268/tap && brew install --cask gitguy268/tap/hillium\`."
+          fi
